@@ -5,9 +5,10 @@ const path = require('path');
 
 // Initialization
 const app = express()
-const port = process.env.port || 9000
 require('./db')
+
 // Settings
+app.set("port", process.env.PORT || 3000);
 app.set('views', 'src/views');
 app.set('view engine', 'ejs');
 
@@ -21,6 +22,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 // App running
-app.listen(port, () => {
-    console.log(`App listening in port ${port}`)
+app.listen(app.get('port'), () => {
+    console.log(`App listening in port ${app.get('port')}`)
 })
