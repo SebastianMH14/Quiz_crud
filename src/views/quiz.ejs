@@ -59,7 +59,7 @@
                 } 
                 else {
                     localStorage.setItem('user', email)
-                    const url = 'http://localhost:9000/api/results/receive'
+                    const url = 'https://quizz-api-tecnical-test.herokuapp.com/api/results/receive'
                     fetch(url, {
                         method: "POST",
                         headers: {'Content-Type': 'application/json'},
@@ -70,7 +70,8 @@
                     }).then(
                         (data) => {
                             let num = Math.floor(Math.random() * 10)
-                            window.location.replace(`http://localhost:9000/api/results/score/${num}`)
+                            window.location.replace(`https://quizz-api-tecnical-test.herokuapp.com/api/results/score/${num}`)
+                            localStorage.clear()
                         }
                     )
                     .catch(error => console.log(error))
