@@ -1,0 +1,86 @@
+<%- include('header'); %>
+    <div class="row">
+        <% data.forEach(function(question){ %>
+            <div class="col-md-6">
+                <div class="card m-2">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h1 class="">
+                                <%- question.question %>
+                            </h1>
+                        </div>
+                        <div class="d-grid gap-2 ">
+                            <button class="btn btn-success true" value="<%- question._id %>"> True</button>
+                            <button class="btn btn-danger false" value="<%- question._id %>"> False</button>
+                            <input id="id" type="hidden" value=""></input>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <% }); %>
+            <div class="row justify-content-center">
+                <h1 class="text-center text-white">Please enter your email to store your answers</h1>
+                    <form class="text-center">
+                        <input id="userEmail" class=" col-md-6" type="email" name="email" placeholder="email"/>
+                        <button onclick="sendResponses()" class="btn btn-primary">Enviar</button>
+                    </form>
+            </div>
+    </div>
+
+    <script>
+        if (typeof (Storage) !== "undefined") {
+            saveResponse()
+        } else {
+            alert("Sorry, your browser does not support Web storage. Try again with a better one");
+        };
+
+        function saveResponse() {
+            const buttonsTrue = document.getElementsByClassName('true')
+            for (const element of buttonsTrue) {
+                element.addEventListener('click', function () {
+                    localStorage.setItem(element.value, 'True')
+                })
+            }
+
+            const buttonsFalse = document.getElementsByClassName('false')
+            for (const element of buttonsFalse) {
+                element.addEventListener('click', function () {
+                    localStorage.setItem(element.value, 'False')
+                })
+            };
+        }
+
+        function sendResponses() {
+            if (localStorage.length === 10) {
+                const email = document.getElementById('userEmail').value
+                if (email === '') {
+                    alert('Please enter an email ✉')
+                } 
+                else {
+                    localStorage.setItem('user', email)
+                    const url = 'http://localhost:9000/api/results/receive'
+                    fetch(url, {
+                        method: "POST",
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify(localStorage)
+                    })
+                    .then(response => {
+                        return response.json()
+                    }).then(
+                        (data) => {
+                            let num = Math.floor(Math.random() * 10)
+                            window.location.replace(`http://localhost:9000/api/results/score/${num}`)
+                        }
+                    )
+                    .catch(error => console.log(error))
+                }
+            }
+            else {
+                alert(`Please answer the questions 😑 ${10 - localStorage.length} remaining questions`);
+            }
+        };
+
+    </script>
+
+    <%- include('footer'); %>

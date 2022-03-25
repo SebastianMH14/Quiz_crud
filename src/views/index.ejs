@@ -1,0 +1,26 @@
+<%- include('header'); %>
+
+
+    <main class="container">
+        <div class="container">
+            <h1 class="display4 text-center m-4">
+                Welcome to the Trivia Challenge!
+            </h1>
+            <h2 class="display3 text-center m-4">
+                You will be presented
+                with 10 True or False
+                questions
+            </h2>
+            <h2 class="display3 text-center m-4">
+                Can you score 100%?
+            </h2>
+            <div class="container text-center">
+                <a href="/api/quizz/start" class="btn btn-primary btn-lg">Begin</a>
+                <a href="/api/quizz/add" class="btn btn-primary btn-lg">Add Question</a>
+                <a href="/api/quizz/update" class="btn btn-primary btn-lg">Edit Questions</a>
+            </div>
+        </div>
+    </main>
+
+
+<%- include('footer'); %>

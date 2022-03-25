@@ -1,0 +1,34 @@
+<%- include('header'); %>
+    <div class="col-md-4 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="text-center">New Question</h3>
+            </div>
+            <div class="card-body">
+                <form action="/api/quizz/new" method="POST">
+                    <div class="form-group m-2">
+                        <input type="text" name="category" class="form-control" placeholder="Question category">
+                    </div>
+                    <div class="form-group m-2">
+                        <input type="text" name="difficulty" class="form-control" placeholder="Difficulty">
+                    </div>
+                    <div class="form-group m-2">
+                        <textarea name="question" class="form-control" placeholder="Question"></textarea>
+                    </div>
+                    <div class="form-group m-2">
+                        <select class="form-select m-2" name="correct_answer">
+                            <option value="True">True</option>
+                            <option value="False"/>False</option>
+                        </select>
+                    </div>
+                    <div class="form-group d-grid gap-2 col-6 mx-auto">
+                        <button class="btn btn-primary" type="submit">
+                            Save
+                        </button>
+                    <a href="/api/quizz/addrandom" class="btn btn-primary btn-lg">Add Random Quizz</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<%- include('footer'); %>

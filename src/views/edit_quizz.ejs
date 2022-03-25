@@ -1,0 +1,22 @@
+<%- include('header'); %>
+    <a href="/api/" class="btn btn-primary m-2">Home</a>
+    <div class="row">
+        <% data.forEach(function(question){ %>
+            <div class="col-md-6">
+                <div class="card m-2">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h1>
+                                <%- question.question %>
+                            </h1>
+                        </div>
+                            <a href="/api/quizz/update/<%= question._id %>" class="btn btn-warning btn-lg">Edit</a>
+                            <form action="/api/quizz/delete/<%= question._id %>" method="POST">
+                                <button type="submit" class="btn btn-danger btn-lg">Delete</button>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+    <%- include('footer'); %>
