@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const resultSchema = require('../../models/results')
-const quizzSchema = require('../../models/Quizz');
+const quizzSchema = require('../../models/quizz');
 
 
 
