@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const Quizz = require('../../models/Quizz');
+const Quizz = require('../../models/quizz');
 const quizzSchema = require('../../models/quizz');
 const { reqQuizz } = require('../../request');
 
