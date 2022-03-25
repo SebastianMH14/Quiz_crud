@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const Quizz = require('../../models/Quizz');
-const quizzSchema = require('../../models/Quizz');
+const quizzSchema = require('../../models/quizz');
 const { reqQuizz } = require('../../request');
 
 //Get Quizz
